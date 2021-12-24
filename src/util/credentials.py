@@ -36,7 +36,7 @@ def update_file(filepath: str, new_value: object, path: list):
         sub_dict = inner_sub_dict
         p.pop()
 
-    write_file(filepath, sub_dict)
+    return write_file(filepath, sub_dict)
 
 
 if __name__ == "__main__":
