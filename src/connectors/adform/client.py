@@ -1,5 +1,5 @@
 import requests
-
+import os
 from src.util.credentials import read_file_key, update_file
 from src.util.helpers import wait_until, branch_operator
 
@@ -150,4 +150,5 @@ def main(filepath: str) -> object:
 
 if __name__ == "__main__":
     auth_filepath = "auth.json"
-    print(main(auth_filepath))
+
+    # print(main(auth_filepath))
