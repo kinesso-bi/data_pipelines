@@ -1,7 +1,6 @@
 import requests
-import os
 from src.util.credentials import read_file_key, update_file
-from src.util.helpers import wait_until, branch_operator
+from src.util.helpers import wait_until, branch_operator, write_file
 
 
 class Adform:
@@ -121,10 +120,12 @@ class Adform:
 
             return self.read_location_data()
 
+    def get_report_data(self):
+        return self.post_operation()
     # TODO function transforming data to csv or dataframe
 
 
-def main(filepath: str) -> object:
+def main(filepath: str, account: str) -> object:
     body = dict()
     body['dimensions'] = ["date", "client", "campaign", "page"]
     body['metrics'] = [
@@ -141,14 +142,13 @@ def main(filepath: str) -> object:
         }
     ]
     body['filter'] = {
-        "date": "lastWeek"
+        "date": "thisYear"
     }
 
-    a = Adform(filepath, 'bmw', body['dimensions'], body['metrics'], body['filter'])
-    return a.post_operation()
+    adform = Adform(filepath, account, body['dimensions'], body['metrics'], body['filter'])
+    return adform.post_operation()
 
 
 if __name__ == "__main__":
     auth_filepath = "auth.json"
-
-    # print(main(auth_filepath))
+    pass
